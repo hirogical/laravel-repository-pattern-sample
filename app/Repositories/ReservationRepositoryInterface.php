@@ -2,17 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Http\Requests;
-
-interface BookRepositoryInterface
+interface ReservationRepositoryInterface
 {
     public function index();
 
-    public function create();
-
-    public function store();
-
-    public function show();
+    public function show(int $reservationId);
 
     public function edit();
 
