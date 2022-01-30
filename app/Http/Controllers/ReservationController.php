@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ReservationResource;
+use App\Http\Resources\ReservationIndexResource;
+use App\Http\Resources\ReservationShowResource;
 use App\Services\ReservationService;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
@@ -19,11 +20,11 @@ class ReservationController extends BaseController
     public function index()
     {
         try {
-            $reservations = ReservationResource::collection(
+            $reservations = ReservationIndexResource::collection(
                 $this->reservationService->getReservations()
             );
 
-            return view('reservation.index', compact('reservations'));
+            return view('reservation.index')->with('reservations', $reservations);
         } catch (\Exception $ex) {
             logger($ex->getMessage());
 
@@ -34,9 +35,11 @@ class ReservationController extends BaseController
     public function show(int $reservationId)
     {
         try {
-            return new ReservationResource(
-                $this->reservationService->getReservationByReservationId($reservationId)
+            $reservation = new ReservationShowResource(
+                $this->reservationService->getReservation($reservationId)
             );
+
+            return view('reservation.show')->with('reservation', $reservation);
         } catch (\Exception $ex) {
             logger($ex->getMessage());
 

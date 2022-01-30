@@ -6,9 +6,7 @@ interface ReservationRepositoryInterface
 {
     public function index();
 
-    public function show(int $reservationId);
-
-    public function edit();
+    public function findByReservationId(int $reservationId);
 
     public function update();
 

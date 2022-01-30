@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/reservations/', [ReservationController::class, 'index'])->name('reservations');
+Route::get('/', [ReservationController::class, 'index'])->name('reservation.index');
+Route::get('/{reservationId}', [ReservationController::class, 'show'])->name('reservation.show');

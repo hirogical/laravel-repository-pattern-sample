@@ -13,10 +13,43 @@ class ReservationControllerTest extends TestCase
         parent::setUp();
     }
 
-    public function testGetReservations()
+    public function testIndex()
     {
-        $url = route('reservations');
+        $url = route('reservation.index');
         $response = $this->get($url);
-        $response->assertOk();
+        $response->assertOk()
+            ->assertViewIs('reservation.index');
+    }
+
+    public function testShow()
+    {
+        $url = route('reservation.show', ['reservationId' => 1]);
+        $response = $this->get($url);
+        $response->assertOk()
+            ->assertViewIs('reservation.show');
+    }
+
+    public function testEdit()
+    {
+        $url = route('reservation.show', ['reservationId' => 1]);
+        $response = $this->get($url);
+        $response->assertOk()
+            ->assertViewIs('reservation.show');
+    }
+
+    public function testUpdate()
+    {
+        $url = route('reservation.show', ['reservationId' => 1]);
+        $response = $this->get($url);
+        $response->assertOk()
+            ->assertViewIs('reservation.show');
+    }
+
+    public function testDelete()
+    {
+        $url = route('reservation.show', ['reservationId' => 1]);
+        $response = $this->get($url);
+        $response->assertOk()
+            ->assertViewIs('reservation.show');
     }
 }

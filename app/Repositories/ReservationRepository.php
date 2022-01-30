@@ -16,7 +16,7 @@ class ReservationRepository implements ReservationRepositoryInterface
 
     public function index()
     {
-        $reservations = $this->reservation::with([
+        $reservations = $this->reservation->with([
             'user:id,name',
             'book:id,title'
         ])->get();
@@ -24,12 +24,17 @@ class ReservationRepository implements ReservationRepositoryInterface
         return $reservations;
     }
 
-    public function show(int $reservationId)
+    public function findByReservationId(int $reservationId)
     {
-    }
+        $reservation = $this->reservation->with([
+            'user',
+            'book',
+            'book.author',
+            'book.publisher',
+            'book.tags'
+        ])->findOrFail($reservationId);
 
-    public function edit()
-    {
+        return $reservation;
     }
 
     public function update()

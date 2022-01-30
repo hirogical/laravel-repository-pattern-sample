@@ -20,9 +20,23 @@ class ReservationService
         return $reservations;
     }
 
-    public function getReservationByReservationId(int $reservationId)
+    public function getReservation(int $reservationId)
     {
-        $reservation = $this->reservationRepository->show($reservationId);
+        $reservation = $this->reservationRepository->findByReservationId($reservationId);
+
+        return $reservation;
+    }
+
+    public function UpdateReservation(int $reservationId)
+    {
+        $reservation = $this->reservationRepository->findByReservationId($reservationId);
+
+        return $reservation;
+    }
+
+    public function DeleteReservation(int $reservationId)
+    {
+        $reservation = $this->reservationRepository->findByReservationId($reservationId);
 
         return $reservation;
     }
