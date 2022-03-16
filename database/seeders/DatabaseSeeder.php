@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             BookTableSeeder::class,
             TagTableSeeder::class,
             BookTagTableSeeder::class,
-            ReservationTableSeeder::class
+            ReservationTableSeeder::class,
+            PostTableSeeder::class
         ]);
     }
 }

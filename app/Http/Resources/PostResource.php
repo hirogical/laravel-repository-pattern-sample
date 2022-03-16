@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserIndexResource extends JsonResource
+class PostResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,8 +15,7 @@ class UserIndexResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->name,
-            'posts' => $this->whenLoaded('posts')
+            'content' => $this->content
         ];
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ReservationController::class, 'index'])->name('reservation.index');
 Route::get('/{reservationId}', [ReservationController::class, 'show'])->name('reservation.show');
+Route::get('/{reservationId}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
+
+Route::get('/', [UserController::class, 'index'])->name('user.index');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ReservationIndexResource;
 use App\Http\Resources\ReservationShowResource;
 use App\Services\ReservationService;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
 
@@ -33,6 +34,21 @@ class ReservationController extends BaseController
     }
 
     public function show(int $reservationId)
+    {
+        try {
+            $reservation = new ReservationShowResource(
+                $this->reservationService->getReservation($reservationId)
+            );
+
+            return view('reservation.show')->with('reservation', $reservation);
+        } catch (\Exception $ex) {
+            logger($ex->getMessage());
+
+            return response()->json([$ex->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function edit(int $reservationId)
     {
         try {
             $reservation = new ReservationShowResource(
