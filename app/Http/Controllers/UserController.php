@@ -20,16 +20,11 @@ class UserController extends BaseController
     public function index()
     {
         try {
-            // $users = UserIndexResource::collection(
-            //     $this->userService->getUsers()
-            // );
-
-            $users = new UserIndexResource(
+            $users = UserIndexResource::collection(
                 $this->userService->getUsers()
             );
 
-            //return view('user.index')->with('users', $users);
-            return $users;
+            return view('user.index')->with('users', $users);
         } catch (\Exception $ex) {
             logger($ex->getMessage());
 

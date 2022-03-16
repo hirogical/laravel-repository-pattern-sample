@@ -18,6 +18,5 @@ class UserControllerTest extends TestCase
         $url = route('user.index');
         $response = $this->get($url);
         $response->assertOk();
-        dd($response->json());
     }
 }

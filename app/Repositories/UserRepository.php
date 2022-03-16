@@ -18,7 +18,7 @@ class UserRepository implements UserRepositoryInterface
     {
         $users = User::withWhereHas('posts', function ($q) {
             $q->where('created_at', '>=', today());
-        })->first();
+        });
 
         return $users;
     }
